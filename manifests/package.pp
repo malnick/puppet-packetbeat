@@ -12,8 +12,9 @@ class packetbeat::package {
         creates => '/tmp/packetbeat',
     }
 
-    package { '/tmp/packetbeat':
+    package { 'packetbeat':
         ensure   => installed,
+        source   => '/tmp/packetbeat',
         provider => 'dpkg',
         require  => Exec['download_packetbeat'],
     }
