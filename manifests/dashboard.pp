@@ -12,7 +12,7 @@ class packetbeat::dashboard {
     }
 
     exec { 'load_dashboards':
-        command => '/tmp/dashboards-0.4.1/./load.sh',
+        command => '/tmp/dashboards-0.4.1/load.sh',
         cwd     => '/tmp/dashboards-0.4.1',
         require => Exec['untar_dashboards'],
     }
