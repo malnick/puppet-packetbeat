@@ -2,15 +2,15 @@ class packetbeat::config() inherits packetbeat {
 
   file { '/etc/packetbeat/':
     ensure => 'directory',
-    group  => '0',
+    group  => 'root',
     mode   => '0755',
-    owner  => '0',
+    owner  => 'root',
   }
 
   concat { '/etc/packetbeat/packetbeat.conf':
-    group   => '0',
+    group   => 'root',
     mode    => '0755',
-    owner   => '0',
+    owner   => 'root',
     notify  => Service['packetbeat']
   }
 
