@@ -1,29 +1,24 @@
-packetbeat
+# puppet-packetbeat
+This module installs the packet beat agent and a baseline configuration.
 
-This is the packetbeat module.
+In the role for your packetbeat node simply: 
 
-License
--------
-GPLv2
+```ruby
+class { ::packetbeat:
+    aggregator => ${IP_ADDRESS_TO_AGGREGATOR} or ${AGGREGATOR_FQDN},
+}
+```
 
+If this is running on the same box as your aggregator I'd suggest using the FQDN and not localhost. 
 
-Contact
--------
+## Common Patterns
+Commonly packetbeat is deployed with an ELK stack (Elasticsearch, Logstash, Kibana). For large scale distribution and asynchronous agent transactions
+it's also deployed with redis. There are a lot of modules out there to get you setup for those four services.
 
-Kris Buytaert 
+This module is designed to install and configure only packetbeat. However, if you'd like the full stack checkout:
 
+* elasticsearch/elasticsearch (Forge)
+* github.com:malnick/puppet-logstash
+* kibana3 (forge)
 
-Assumptions
------------
-Example use case : 
- https://github.com/KrisBuytaert/vagrant-puppet-packetbeat
-
-
-Only tested on CentOS
-PacketBeat rpm is available in  an available repository.
-Elastic Search is installed
-
-
-TODO:
-
-Upload the Dashboards during deploy
+Some of these needed massaging and others did not, your mileage will vary. 
