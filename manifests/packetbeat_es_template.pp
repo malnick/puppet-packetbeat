@@ -1,4 +1,4 @@
-class packetbeat::dashboards {
+class packetbeat::packetbeat_es_template {
 
     file { "packetbeat.template.json":
         ensure => present,
@@ -9,5 +9,6 @@ class packetbeat::dashboards {
     exec { "put_dashboards":
         command => '/usr/bin/curl -XPUT "http://localhost:9200/_template/packetbeat" -d@/tmp/packetbeat.template.json',
         unless  => '/usr/bin/curl -XGET "http://localhost:9200/_template/packetbeat?pretty"',
+        require => File['packetbeat.template.json'],
     }
 }
