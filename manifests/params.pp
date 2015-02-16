@@ -14,7 +14,7 @@ class packetbeat::params(
   $mysqld_mon       = false,
   $nginx_mon        = false,
   $app_procs        = false,
-  $http_protocols   = [80, 8080, 8000, 5000, 8002],
+  $http_protocols   = ['80', '8080', '8000', '5000', '8002','443', '8140'],
   $mysql_protocols  = undef, #[3306],
   $redis_protocols  = undef, #[6379],
   $pgsql_protocols  = undef, #[5432],
