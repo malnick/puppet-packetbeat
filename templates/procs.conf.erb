@@ -4,12 +4,18 @@ dont_read_from_proc = <%= @disable_procs %>
 
 # Which processes to monitor and how to find them. The processes can
 # be found by searching their command line by a given string.
-#
-#  [procs.monitored.mysqld]
-#  cmdline_grep = "mysqld"
+<% if @mysqld_mon -%>
+  [procs.monitored.mysqld]
+  cmdline_grep = "mysqld"
+<% end -%>
 
-#  [procs.monitored.nginx]
-#  cmdline_grep = "nginx"
+<% if @nginx_mon -%>
+  [procs.monitored.nginx]
+  cmdline_grep = "nginx"
+<% end -%>
 
-#  [procs.monitored.app]
-#  cmdline_grep = "gunicorn"
+<% if @app_procs -%>
+<% @app_procs.each do |p| -%>
+  [procs.monitored.app]
+  cmdline_grep = "<%= p %> "
+<% end -%>

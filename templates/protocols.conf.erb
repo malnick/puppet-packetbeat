@@ -1,3 +1,17 @@
-  [protocols.<%= @protocol %>]
-  ports = [<%= @ports %>]
-
+[protocols]
+<% if @http_protocols -%>
+    [protocols.http]
+    ports = <%= @http_ports %>
+<% end -%>
+<% if @mysql_protocols -%>
+    [protocols.mysql]
+    ports = <%= @mysql_protocols %>
+<% end -%>
+<% if @redis_protocols -%>
+    [protocols.redis]
+    ports = <%= @redis_protocols %>
+<% end -%>
+<% if @pgsql_protocols -%>
+    [protocols.pgsql]
+    ports = <%= @pgsql_protocols %>
+<% end -%>
