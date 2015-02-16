@@ -1,24 +1,48 @@
-###
-### Packetbeat Agent configuration file.
-###
-### Packetbeat is a protocol monitoring service that
-### works by sniffing the network traffic between your application
-### components. It dumps the results into Elasticsearch.
-###
-### Go to http://packetbeat.com/getstarted for more details.
-###
-
-[elasticsearch]
+# Packetbeat Agent configuration file.
+#
+# Packetbeat is a protocol monitoring service that
+# works by sniffing the network traffic between your application
+# components. It dumps the results into Elasticsearch.
+#
+# Go to http://packetbeat.com/getstarted for more details.
+#
+[output]
+<% if @es_enabled -%>
+[output.elasticsearch]
 # Set the host and port where to find Elasticsearch.
 host = "<%= @aggregator %>"
 port = <%= @port %>
+<% elsif @redis_enabled -%>
+[output.redis]
+enabled         = true
+host            = <%= @aggregator %>
+port            = 6379
+save_topology   = true
+
+# Optional index name. By default is packetbeat and generates packetbeat keys.
+# index = "packetbeat"
+
+# Optional Redis database number where the events are stored
+# By default is 0.
+# db = 0
+
+# Optional Redis database number where the topology is stored
+# By default is 1. It must have a different value than db.
+# db_topology = 1
+
+# Optional password to authenticate with. By default, no
+# password is set.
+# password = ""
+
+# Optional Redis initial connection timeout in seconds.
+# By default is 5 seconds.
+# timeout = 5
+<% end -%>
 
 [interfaces]
 # Select on which network interfaces to sniff. You can use the "any"
 # keyword to sniff on all connected interfaces.
 device = "<%= @interfaces %>"
-
-
 
 [agent]
 # The name of the agent as it will show up in the web interface. If not

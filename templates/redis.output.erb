@@ -1,0 +1,25 @@
+[output]
+[output.redis]
+enabled         = true
+host            = <%= @redis_host %>
+port            = 6379
+save_topology   = true
+
+# Optional index name. By default is packetbeat and generates packetbeat keys.
+# # index = "packetbeat"
+#
+# # Optional Redis database number where the events are stored
+# # By default is 0.
+# # db = 0
+#
+# # Optional Redis database number where the topology is stored
+# # By default is 1. It must have a different value than db.
+# # db_topology = 1
+#
+# # Optional password to authenticate with. By default, no
+# # password is set.
+# # password = ""
+#
+# # Optional Redis initial connection timeout in seconds. 
+# # By default is 5 seconds.
+# # timeout = 5
