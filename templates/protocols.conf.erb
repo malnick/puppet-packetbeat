@@ -1,7 +1,7 @@
 [protocols]
 <% if @http_protocols -%>
     [protocols.http]
-    ports = <%= @http_ports %>
+    ports = <%= @http_protocols %>
 <% end -%>
 <% if @mysql_protocols -%>
     [protocols.mysql]
